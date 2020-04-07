@@ -17,7 +17,7 @@ services:
   lairapi:
     hostname: lairapi
     container_name: lair_api
-    image: bkeele/lair-api:latest
+    image: 0xanderk0/lair-api:latest
     restart: always
     labels:
       - "traefik.enable=true"
