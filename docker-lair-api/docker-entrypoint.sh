@@ -1,12 +1,8 @@
-FROM golang:1.8.1
-
-EXPOSE 11015
-
-RUN go get -v github.com/x-a-n-d-e-r-k/api-server
-ADD plugins /plugins
-WORKDIR /plugins
-RUN rm .keep
-RUN for file in *.go;                                         \
+#!/bin/bash
+#
+cd /plugins
+cp *.go /tmp
+for file in /tmp/*.go;                                         \
         do                                                    \
                 if [ -e "$file" ]; then                       \
                         echo "Making so for $file"  &&                \
@@ -15,8 +11,7 @@ RUN for file in *.go;                                         \
                         rm $file ;                                    \
                 fi                                            \
         done
-WORKDIR /root
-ENV TRANSFORM_DIR=/plugins
-ENV MONGO_URL=mongodb://lairdb:27017/lair
-ENV API_LISTENER=0.0.0.0:11015
-CMD api-server
+sleep 10
+mongo "$LAIRDB_HOST":27017/admin --eval "var lairdbHost = '$LAIRDB_HOST'" /scripts/db_init.js
+sleep 1
+api-server
