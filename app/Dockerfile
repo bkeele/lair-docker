@@ -3,8 +3,6 @@ FROM node:8.9.0
 EXPOSE 11014
 
 WORKDIR /root/app
-RUN apt-get update
-RUN apt-get install -y bsdtar && ln -sf $(which bsdtar) $(which tar)
 
 RUN curl https://install.meteor.com/ | sh
 RUN git clone "https://github.com/x-a-n-d-e-r-k/lair" \
