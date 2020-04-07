@@ -4,7 +4,7 @@ services:
   lair:
     hostname: lair
     container_name: lair_lair
-    image: bkeele/lair:latest
+    image: 0xanderk0/lair:latest
     environment:
       LAIR_PASSWORD: "password"
     restart: always
