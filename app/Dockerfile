@@ -7,7 +7,7 @@ RUN apt-get update
 RUN apt-get install -y bsdtar && ln -sf $(which bsdtar) $(which tar)
 
 RUN curl https://install.meteor.com/ | sh
-RUN git clone "https://github.com/x-a-n-d-e-r-k/lair"
+RUN git clone "https://github.com/x-a-n-d-e-r-k/lair" \
     && cd lair/app \
     && meteor npm install --save babel-runtime \
     && meteor build --directory /root/app --allow-superuser
